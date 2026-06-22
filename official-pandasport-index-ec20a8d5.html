@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <title>熊猫体育 · 重访与关注</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: #f2f6fc;
+            color: #1a2e3f;
+            line-height: 1.6;
+            padding: 0 1rem;
+        }
+
+        .page {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2.5rem 0 3rem;
+        }
+
+        /* —— Hero 区域 —— */
+        .hero {
+            background: linear-gradient(145deg, #0a2a38 0%, #194e5c 100%);
+            border-radius: 2rem 2rem 2rem 2rem;
+            padding: 3rem 2rem 2.8rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 12px 28px rgba(6, 60, 70, 0.18);
+            text-align: center;
+            color: #e2f0f3;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: -30%;
+            right: -10%;
+            width: 220px;
+            height: 220px;
+            background: rgba(64, 184, 169, 0.12);
+            border-radius: 50%;
+            filter: blur(60px);
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .hero .tagline {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #c5e4e8;
+            max-width: 600px;
+            margin: 0.75rem auto 2rem;
+            border-top: 1px solid rgba(255,255,255,0.15);
+            padding-top: 1rem;
+        }
+
+        .hero .meta-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(2px);
+            padding: 0.5rem 1.3rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #d3edf0;
+        }
+
+        /* —— 网格卡片 —— */
+        .grid-cards {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.8rem;
+            margin: 2.5rem 0 2.8rem;
+        }
+
+        @media (min-width: 680px) {
+            .grid-cards {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 1.5rem;
+            padding: 1.6rem 1.5rem 1.8rem;
+            box-shadow: 0 6px 18px rgba(16, 56, 64, 0.06);
+            transition: transform 0.2s ease, box-shadow 0.25s;
+            border: 1px solid #e2edf0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 28px rgba(6, 70, 75, 0.10);
+            border-color: #7fc1b9;
+        }
+
+        .card-icon {
+            font-size: 1.6rem;
+            margin-bottom: 0.3rem;
+            color: #0b6f6b;
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 0.2rem 0 0.6rem;
+            color: #0c3a42;
+        }
+
+        .card p {
+            color: #2c4b55;
+            font-size: 0.95rem;
+            margin-bottom: 0.4rem;
+            flex: 1;
+        }
+
+        .card .small-note {
+            font-size: 0.82rem;
+            color: #54828c;
+            border-top: 1px solid #e3eff2;
+            padding-top: 0.7rem;
+            margin-top: 0.7rem;
+        }
+
+        /* —— 背景 / 专题说明 —— */
+        .section-backdrop {
+            background: #e7f0f3;
+            border-radius: 1.8rem;
+            padding: 2rem 1.8rem;
+            margin: 2rem 0 2.5rem;
+            border-left: 6px solid #1f8a84;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            gap: 1.2rem 2rem;
+        }
+
+        .backdrop-content {
+            flex: 1 1 220px;
+        }
+
+        .backdrop-content h2 {
+            font-size: 1.4rem;
+            font-weight: 550;
+            color: #06323b;
+            margin-bottom: 0.6rem;
+        }
+
+        .backdrop-content p {
+            font-size: 0.95rem;
+            color: #1f3f49;
+            max-width: 620px;
+        }
+
+        .backdrop-highlight {
+            background: #d4e7eb;
+            padding: 0.8rem 1.2rem;
+            border-radius: 1rem;
+            min-width: 180px;
+            flex: 0 1 auto;
+        }
+
+        .backdrop-highlight span {
+            display: block;
+            font-size: 0.85rem;
+            color: #0b5557;
+            font-weight: 500;
+        }
+
+        .backdrop-highlight strong {
+            font-size: 1rem;
+            color: #04313b;
+        }
+
+        /* —— 三段式介绍 (杂志风格) —— */
+        .narrative {
+            display: flex;
+            flex-direction: column;
+            gap: 1.6rem;
+            margin: 2rem 0 2.2rem;
+        }
+
+        .narrative-item {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.5rem 1.2rem;
+            padding: 1rem 0;
+            border-bottom: 1px dashed #c6dbdf;
+        }
+
+        .narrative-item:last-child {
+            border-bottom: none;
+        }
+
+        .narrative-num {
+            font-size: 1.8rem;
+            font-weight: 200;
+            color: #1d8a82;
+            line-height: 1;
+            min-width: 2.6rem;
+        }
+
+        .narrative-text {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .narrative-text h4 {
+            font-weight: 550;
+            font-size: 1.1rem;
+            color: #0e414b;
+            margin-bottom: 0.25rem;
+        }
+
+        .narrative-text p {
+            color: #2c4f58;
+            font-size: 0.95rem;
+        }
+
+        .narrative-text p a {
+            color: #0b6b62;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid #9acac2;
+            transition: border-color 0.15s;
+        }
+
+        .narrative-text p a:hover {
+            border-bottom-color: #08524b;
+        }
+
+        /* —— 尾注 / 访问提示 —— */
+        .footer-note {
+            margin-top: 3rem;
+            padding: 2rem 1.5rem 1.8rem;
+            background: #ffffff;
+            border-radius: 1.8rem;
+            box-shadow: 0 4px 12px rgba(0, 30, 35, 0.04);
+            border: 1px solid #d6e8eb;
+            text-align: center;
+        }
+
+        .footer-note .reminder {
+            font-size: 0.95rem;
+            color: #1e4e58;
+            max-width: 560px;
+            margin: 0 auto 1rem;
+        }
+
+        .footer-note .reminder a {
+            color: #0a6f68;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid #8ec2ba;
+            transition: border-color 0.15s;
+        }
+
+        .footer-note .reminder a:hover {
+            border-bottom-color: #03534b;
+        }
+
+        .footer-note .faq-mini {
+            display: inline-flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.6rem 1.8rem;
+            margin-top: 1.2rem;
+            font-size: 0.85rem;
+            color: #386a74;
+            background: #eef7f9;
+            padding: 0.7rem 1.5rem;
+            border-radius: 40px;
+        }
+
+        .footer-note .faq-mini span {
+            white-space: nowrap;
+        }
+
+        .footer-note .faq-mini strong {
+            color: #094d4b;
+            font-weight: 550;
+        }
+
+        .tiny-meta {
+            text-align: center;
+            font-size: 0.75rem;
+            color: #7a9ba3;
+            margin-top: 2.2rem;
+            letter-spacing: 0.02em;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #d3e4e8;
+            margin: 1rem 0;
+        }
+
+        /* 响应式微调 */
+        @media (max-width: 460px) {
+            .hero h1 { font-size: 2rem; }
+            .hero { padding: 2rem 1.2rem; }
+            .hero .tagline { font-size: 1rem; }
+            .section-backdrop { padding: 1.5rem 1.2rem; }
+            .narrative-num { min-width: 2rem; font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- hero 区域 -->
+    <div class="hero">
+        <h1>熊猫体育</h1>
+        <div class="tagline">再次打开 · 持续关注 · 收藏此刻</div>
+        <div class="meta-badge">
+            <span>⚬</span> 重访专题 <span>⚬</span> 信息聚合
+        </div>
+    </div>
+
+    <!-- 背景说明 / 杂志专题式 -->
+    <div class="section-backdrop">
+        <div class="backdrop-content">
+            <h2>源自持续关注的视角</h2>
+            <p>对于回归用户而言，每一次打开都更接近自己关心的脉络。熊猫体育并非一次性入口，而是一个需要反复感知、收藏并保持同步的信息场景。以下三段叙述围绕“再访与留存”展开，不追求新奇，而重视连贯。</p>
+        </div>
+        <div class="backdrop-highlight">
+            <span>📌 当前专题</span>
+            <strong>再访 · 收藏 · 跟随</strong>
+        </div>
+    </div>
+
+    <!-- 网格卡片：特点与场景  -->
+    <div class="grid-cards">
+        <div class="card">
+            <div class="card-icon">📋</div>
+            <h3>信息密度可回溯</h3>
+            <p>界面布局以卡片与段落间隔为主，适合快速浏览与二次查阅。标记过的内容在后续访问中仍保持一致结构，降低重新理解的成本。</p>
+            <div class="small-note">重访时无需重新适应</div>
+        </div>
+        <div class="card">
+            <div class="card-icon">🔖</div>
+            <h3>收藏操作自然嵌入</h3>
+            <p>无论是浏览器书签、笔记摘录还是页面内记录，熊猫体育的设计方向鼓励用户将页面作为长期参考坐标，而非一次性消耗页。</p>
+            <div class="small-note">收藏即建立个人索引</div>
+        </div>
+    </div>
+
+    <!-- 三段自然介绍：再次访问、收藏、持续关注 -->
+    <div class="narrative">
+        <div class="narrative-item">
+            <div class="narrative-num">01</div>
+            <div class="narrative-text">
+                <h4>再次访问的价值积累</h4>
+                <p>每次返回都能在熟悉的框架里找到新补充或未读细节。与一次性浏览不同，定期回到 <a href="https://official-pandasport.com">熊猫体育</a> 可逐步建立对内容结构的深层理解，尤其适合需要持续获取动态信息的用户。</p>
+            </div>
+        </div>
+        <div class="narrative-item">
+            <div class="narrative-num">02</div>
+            <div class="narrative-text">
+                <h4>收藏行为的信息锚点</h4>
+                <p>将页面加入收藏夹或阅读列表，意味着你为自己设定了一个可回顾的信息原点。熊猫体育的页面结构注重稳定性——标题层级、卡片分区、导航提示在多次迭代中保持一致，让收藏的链接始终有效可用。</p>
+            </div>
+        </div>
+        <div class="narrative-item">
+            <div class="narrative-num">03</div>
+            <div class="narrative-text">
+                <h4>持续关注的轻量节奏</h4>
+                <p>不需要每日紧盯。按照自己的周期回来浏览，即可捕捉到版本演进与内容调整。熊猫体育不鼓励过度推送，而是通过克制的信息布局，引导使用者自行决定访问频次与深度。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ 摘要 + 页尾访问提示 混合区域 -->
+    <div class="footer-note">
+        <div class="reminder">
+            如果你正在考虑是否将当前页面纳入常用资源，不妨先将其加入浏览器书签。此后每次需要获取结构化的参考信息时，可直接回到 <a href="https://official-pandasport.com">熊猫体育</a> 页面，无需重新搜索或验证来源。
+        </div>
+
+        <div class="faq-mini">
+            <span><strong>📌 常见简述</strong></span>
+            <span>⚬ 内容是否定期更新？—— 结构稳定，信息按需补充</span>
+            <span>⚬ 收藏后如何快速定位？—— 建议使用浏览器书签并命名</span>
+        </div>
+
+        <hr>
+
+        <div style="font-size:0.85rem; color:#43737d; margin-top:0.6rem;">
+            <span>页面内嵌提示 · 适合杂志式重访习惯</span>
+        </div>
+    </div>
+
+    <!-- 极简脚注，仅用于体现内部标识 -->
+    <div class="tiny-meta">
+        <span>专注结构 · 不追踪 · 可收藏</span>
+    </div>
+
+</div>
+</body>
+</html>
